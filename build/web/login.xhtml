@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Kan Bağış ve Sorgulama</title>
+    </h:head>
+    <h:body style="background-color: #009999">
+        
+        <p:growl id="growl" sticky="true" showDetail="true" />
+        <h:form >
+                
+            <p:panelGrid columns="2" style="position: absolute; top: 250px; left: 500px; width:400px;">
+                <f:facet name="header">Kan Bağış</f:facet>
+                <h:outputText value="Kullanıcı Adı:"/>
+                <p:inputText  value="#{login.username}" style="font-weight: bold; color: #444444;"/>
+                    <h:outputText value="Şifre:"/>
+                
+                    <h:inputSecret value="#{login.password}"  />
+                    
+                        <f:facet name="footer">
+                            <p:commandButton value="Giriş" style="left:30px; background-color: #45BF1F;"  action="#{login.giriskontrolet()}" />
+                            
+                            <p:commandButton value="Kayıt Ol"  style="left:70px; background-color: #45BF1F;" action="faces/uyelik.xhtml"/> 
+                            
+           </f:facet>
+                  
+            </p:panelGrid>
+             <p:commandButton value="Kan Ara" action="/faces/arama.xhtml" style="top:400px; left:600px; width:200px; height:100px;  background-color: #45BF1F;" />
+        </h:form >
+    </h:body>
+</html>
+

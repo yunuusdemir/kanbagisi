@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Kullanıcı Paneli</title>
+                <link rel="stylesheet" href="style.css" />
+        <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'/>
+        <link href='https://fonts.googleapis.com/css?family=Alex+Brush' rel='stylesheet' type='text/css'/>
+        <link href='https://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'/>
+
+    </h:head>
+    <h:body>
+      <p:growl  id="growl" sticky="true" showDetail="true" globalOnly="true"  />
+      
+      <h:form   style="align-content: center;width:auto; ;text-align: center;  width:80%;background-color: #666666">
+              <h:panelGrid  columns="2" cellpadding="1" style="border-style: hidden !important; width=200px;" >
+    <f:facet name="header">
+                
+        <p:commandButton value="Yönetici Bilgileri Düzenle" onclick="PF('adminduzenle').show();"  style="float:left; background-color: #F7F8C3;" type="button" icon="ui-icon-pencil" />
+        
+        <p:commandButton value="Çıkış" immediate="true" action="faces/login.xhtml" style="left:650px; background-color: #F7F8C3;"  type="button" icon=" ui-icon-close" />
+        
+        <p:dialog  header="Kullanıcı Bilgileri" widgetVar="adminduzenle" resizable="true" width="400px" style="background-color: white;" closeOnEscape="true" >
+            <h:panelGrid  columns="1" cellpadding="1" style="border-style: hidden !important;" >
+                <p:row>  <h:outputText  value="Kullanıcı adı:#{login.username}" style="float: left;"/>
+                <p:commandButton title="Adı düzenle"  onclick="PF('adminadduzenle').show();"   style="background-color: white;border-color: white;float: left;" type="button" icon="ui-icon-pencil" /></p:row>
+                
+                
+                               
+                <p:row><h:outputText  value="Şifre:****" style="float: left;"/>
+                <p:commandButton title="Şifreyi düzenle" onclick="PF('adminsifreduzenle').show();"   style="background-color: white;border-color: white;float: left;" type="button" icon="ui-icon-pencil" /></p:row>       
+            </h:panelGrid>
+        </p:dialog>
+        
+        <p:dialog  header="Kullanıcı Adı Değiştir" widgetVar="adminadduzenle" resizable="true" width="300px" style="background-color: white;" closeOnEscape="true" >
+            <h:panelGrid  columns="1" cellpadding="1" style="border-style: hidden !important;" >
+                
+                <p:inputText value="#{giriskontrol.degisken}" placeholder="Yeni ad" maxlength="255" required="true" >
+                <f:validateLength minimum="3" /><p:ajax event="keyup" update="out8" />
+                </p:inputText>
+                              
+                <p:password value="#{login.password}" placeholder="Mevcut Şifreniz" maxlength="255" required="true"  >
+                <p:ajax event="keyup" update="out8" /></p:password>
+                
+                <p:commandButton id="out8" immediate="true"  action="#{login.adminDuzenle(1)}"  icon="ui-icon-refresh" style="background-color: #71FEDC;"/>
+            </h:panelGrid>
+        </p:dialog>
+            
+        
+        <p:dialog  header="Kullanıcı Şifre Değiştir" widgetVar="adminsifreduzenle" resizable="true" width="300px" style="background-color: white;" closeOnEscape="true" >
+            <h:panelGrid  columns="1" cellpadding="1" style="border-style: hidden !important;" >
+                <p:password value="#{giriskontrol.degisken}" placeholder="Yeni şifreniz" maxlength="255" required="true"   >
+                <f:validateLength minimum="4" /><p:ajax event="keyup" update="out10" />
+                 </p:password>
+                              
+                <p:password value="#{login.password}" placeholder="Mevcut Şifreniz" maxlength="255" required="true"   >
+                <p:ajax event="keyup" update="out10" /></p:password>
+                
+                <p:commandButton id="out10" immediate="true"   action="#{login.adminDuzenle(3)}"  icon="ui-icon-refresh" style="background-color: #71FEDC;"/>
+            </h:panelGrid>
+        </p:dialog>
+    </f:facet>
+                   <h:outputText value="Ad:"/>
+                   <p:inputText  value="#{register.ad}" style="font-weight: bold; color: #444444;"/>
+                    <h:outputText value="Soyad:"/>
+                    <p:inputText  value="#{register.soyad}" style="font-weight: bold; color: #444444;"/>
+                    <h:outputText value="Eposta:"/>
+                    <p:inputText  value="#{register.eposta}" style="font-weight: bold; color: #444444;"/>
+                    <h:outputText value="Telno:"/>
+                    <p:inputText  value="#{register.telno}" style="font-weight: bold; color: #444444;"/>
+                   <h:outputText value="Kan Grubu:"/>
+                   <p:selectOneMenu value="#{register.kangrubu}" style="font-weight: bold; color: #444444;">
+            <f:selectItem itemLabel="A RH +" itemValue="A RH +" />
+            <f:selectItem itemLabel="A RH -" itemValue="A RH -" />
+            <f:selectItem itemLabel="B RH +" itemValue="B RH +" />
+            <f:selectItem itemLabel="B RH -" itemValue="B RH -" />
+            <f:selectItem itemLabel="AB RH +" itemValue="AB RH +" />
+            <f:selectItem itemLabel="AB RH -" itemValue="AB RH -" />
+            <f:selectItem itemLabel="0 RH +" itemValue="0 RH +" />
+            <f:selectItem itemLabel="0 RH -" itemValue="0 RH -" />
+        </p:selectOneMenu>
+                    <h:outputText value="Adres:"/>
+                    <p:inputText  value="#{register.adres}" style="font-weight: bold; color: #444444;"/>
+                    
+                    <h:outputText value="Şehir:"/>
+                    <p:inputText  value="#{register.sehir}" style="font-weight: bold; color: #444444;"/>
+                   
+                    <f:facet name="footer">
+                    <p:commandButton value="Guncelle" action="#{register.bilgilendir()} " style="background-color: #006699 ;border-color: white; left:200px;"/>
+                    <p:commandButton value="Sil" action=" " style="background-color: #006699 ;border-color: white; left:210px;"/>
+                 
+                    </f:facet>
+              </h:panelGrid>
+                      
+            
+            
+        
+                
+        </h:form>
+    </h:body>
+</html>
+

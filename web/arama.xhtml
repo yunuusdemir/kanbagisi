@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Kan Sorgulama</title>
+    </h:head>
+    <h:body style="background-color: #009999">
+        <p:growl  id="bildiri" sticky="true" showDetail="true" globalOnly="true"  />
+            <h:form id="rehberim"  style="align-content: center;width: auto;text-align: center;  width:80%;background-color: #F09F97;
+                                        height:auto;box-shadow: -5px -5px 30px #FDFAAB, 5px 5px 30px #FDFAAB;">
+
+                <p:dataTable  style="width:auto;height: inherit; " value="#{register.ara()}" resizableColumns="true" var="yaz" 
+                             paginator="true"  rows="10" rowKey="#{register.id}" editable="true"   emptyMessage="Kayıt bulunamadı">
+    <f:facet name="header" >
+        <p:commandButton value="Ara" immediate="true" action="#{register.ara()}" style="float:left; background-color: #F09F97;" icon="ui-icon-search" />
+            <p:inputText value="#{register.sehir}" placeholder="Şehir" style="font-weight: bold;left:20px; color: #444444;"/>
+                 
+            
+                <p:selectOneMenu value="#{register.kangrubu}" style="font-weight: bold; left:60px; top:10px; color: #444444;">
+            <f:selectItem itemLabel="A RH +" itemValue="A RH +" />
+            <f:selectItem itemLabel="A RH -" itemValue="A RH -" />
+            <f:selectItem itemLabel="B RH +" itemValue="B RH +" />
+            <f:selectItem itemLabel="B RH -" itemValue="B RH -" />
+            <f:selectItem itemLabel="AB RH +" itemValue="AB RH +" />
+            <f:selectItem itemLabel="AB RH -" itemValue="AB RH -" />
+            <f:selectItem itemLabel="0 RH +" itemValue="0 RH +" />
+            <f:selectItem itemLabel="0 RH -" itemValue="0 RH -" />
+        </p:selectOneMenu>
+            <p:commandButton value="Çıkış" immediate="true" action="/faces/login.xhtml" style="float:right;background-color: #F09F97;"  icon=" ui-icon-close" />
+            
+    </f:facet>
+                    
+                     <p:column headerText="Id">
+                         <h:outputText value="#{yaz.id}"/>
+    </p:column>
+
+    <p:column headerText="Ad">
+        <h:outputText value="#{yaz.ad}"/>
+    </p:column>
+
+    <p:column headerText="Soyad">
+        <h:outputText value="#{yaz.soyad}"/>
+    </p:column>
+
+    <p:column headerText="Eposta">
+        <h:outputText value="#{yaz.eposta}"/>
+    </p:column>
+            <p:column headerText="Telefon">
+        <h:outputText value="#{yaz.telno}"/>
+    </p:column>
+                    
+                    <p:column headerText="Kangrubu">
+                        <h:outputText value="#{yaz.kangrubu}"/>
+    </p:column>
+                    <p:column headerText="Adres">
+                              <h:outputText value="#{yaz.adres}"/>
+    </p:column>
+        
+                    <p:column headerText="Şehir">
+                        <h:outputText value="#{yaz.sehir}"/>
+    </p:column>
+                
+                </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
+
